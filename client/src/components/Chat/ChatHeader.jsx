@@ -8,7 +8,7 @@ import { useStateProvider } from "@/context/StateContext";
 import reducer from "@/context/StateReducers";
 import { reducerCases } from "@/context/constants";
 function ChatHeader() {
-  const [{ currentChatUser }, dispatch] = useStateProvider();
+  const [{ currentChatUser, socket }, dispatch] = useStateProvider();
   const handleVoiceCall = () => {
     dispatch({
       type: reducerCases.SET_VOICE_CALL,
@@ -22,7 +22,7 @@ function ChatHeader() {
   };
   const handleVideoCall = () => {
     dispatch({
-      type: reducerCases.SET_Video_CALL,
+      type: reducerCases.SET_VIDEO_CALL,
       videoCall: {
         ...currentChatUser,
         type: "out-going",
@@ -30,6 +30,7 @@ function ChatHeader() {
         roomId: Date.now(),
       },
     });
+
   };
   return (
     <div className="h-16 px-4 py-3 flex justify-between items-center bg-panel-header-background z-10">
