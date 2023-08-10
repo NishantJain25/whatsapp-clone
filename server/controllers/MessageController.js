@@ -133,7 +133,7 @@ export const addAudioMessage = async (req, res, next) => {
 export const getInitialContactsWithMessages = async (req, res, next) => {
   try {
     const userId = parseInt(req.params.from);
-    console.log(userId)
+
     const prisma = getPrismaInstance();
     const user = await prisma.user.findUnique({
       where: {
@@ -191,7 +191,7 @@ export const getInitialContactsWithMessages = async (req, res, next) => {
           receiverId
         }
 
-        //if user was sent by this user then we want the data of the receiver
+        //if msg was sent by this user then we want the data of the receiver
         if(isSender){
           user = {
             ...user, ...msg.receiver,
